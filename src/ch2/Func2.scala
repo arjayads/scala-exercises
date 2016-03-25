@@ -1,3 +1,5 @@
+package ch2
+
 object Func2 {
   def square(x:Int) = x * x
 

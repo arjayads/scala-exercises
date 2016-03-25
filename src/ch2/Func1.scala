@@ -1,3 +1,5 @@
+package ch2
+
 object Func1 {
   def hello = "Hello World"
 
