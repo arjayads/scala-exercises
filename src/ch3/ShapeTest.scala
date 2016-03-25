@@ -7,7 +7,20 @@ object ShapeTest {
     s.area
   }
 
+  def nano() = {
+    println("Getting nano")
+    System.nanoTime()
+  }
+
+  def delayed(t: => Long) = {
+    println("Indelayed method")
+    println("Param:"+t)
+    t
+  }
+
   def main(args: Array[String]) {
+    delayed(nano())
+
     var circle = draw(new Circle(3))
     var rec = draw(new Rectangle(2,3))
 
