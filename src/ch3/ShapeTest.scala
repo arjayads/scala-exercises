@@ -1,4 +1,6 @@
-import ch3.{Rectangle, Circle, Shape}
+import java.util.Date
+
+import ch3._
 
 object ShapeTest {
   def draw(s: Shape) = {
@@ -11,5 +13,15 @@ object ShapeTest {
 
     println(circle)
     println(rec)
+
+    var three = new Three();
+    println(three.thing)
+
+    val x3:String = {
+      val d = new Date()
+      d.toString
+    }
+
+    println(x3)
   }
 }
