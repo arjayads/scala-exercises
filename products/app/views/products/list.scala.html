@@ -3,8 +3,8 @@
 @main("Product catalog") {
 	<dl class="products">
 		@for(product <- products) {
-			<dt>@product.name</dt>
-			<dt>@product.description</dt>
+			<dt><a href="@{routes.Products.show(product.ean)}">@product.name</a></dt>
+			<d>@product.description</d>
 		}
 	</dl>
 }

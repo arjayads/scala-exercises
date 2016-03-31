@@ -1,6 +1,7 @@
 package controllers
 
 import javax.inject._
+import play.api.Play
 import play.api.i18n.{Messages, MessagesApi}
 import play.api.mvc._
 import play.api.i18n.Messages.Implicits._
@@ -19,7 +20,7 @@ class HomeController @Inject() extends Controller {
    * a path of `/`.
    */
   def index = Action {
-    Ok(views.html.index(Messages("application.name")))
+    Redirect(routes.Products.list)
   }
 
 }
