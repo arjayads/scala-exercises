@@ -3,7 +3,6 @@ package controllers
 
 import javax.inject.{Inject, Singleton}
 
-import play.api.Logger
 import models.Product
 import play.api.mvc.{Action, Controller}
 import play.api.i18n.Messages.Implicits._
@@ -17,8 +16,13 @@ class Products @Inject() extends Controller {
 
 		val products = Product.findAll
 
-		Logger.info(products.toString())
-
 		Ok(views.html.products.list(products))
+	}
+
+  def show(ean: Long) = Action {
+
+    Product.findByEan(ean).map { product =>
+      Ok(views.html.products.details(product))
+    }.getOrElse(NotFound)
 	}
 }
