@@ -4,7 +4,7 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
-@(title: String)(content: Html)(implicit messages: Messages)
+@(title: String)(content: Html)(implicit flash: Flash, messages: Messages)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +20,31 @@
                 <div class="navbar-inner">
                     <div class="container">
                         <a class="brand" href="@{routes.HomeController.index}">@Messages("application.name")</a>
+                        <ul class="nav">
+                            <li class="divider-vertical"></li>
+                            <li class="active">
+                                <a href="@{routes.Products.list}">@Messages("products.list.navigation")</a>
+                            </li>
+                            <li class="active">
+                                <a href="@{routes.Products.newProduct}">
+                                    <li class="icon-plus icon-white"></li>
+                                    @Messages("products.new.command")
+                                </a>
+                            </li>
+                            <li class="divider-vertical"></li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
             <div class="container">
+                @if(flash.get("success").isDefined) {
+                    <div class="alert alert-success">@flash.get("success")</div>
+                }
+
+                @if(flash.get("error").isDefined) {
+                    <div class="alert alert-error">@flash.get("error")</div>
+                }
                 @content
                 @debug()
             </div>

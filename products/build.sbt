@@ -10,8 +10,9 @@ libraryDependencies ++= Seq(
   jdbc,
   cache,
   ws,
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.0-RC1" % Test,
-  "net.sf.barcode4j" % "barcode4j" % "2.1"
+  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.0-RC1" % Test
 )
+libraryDependencies += "net.sf.barcode4j" % "barcode4j" % "2.1"
+libraryDependencies += "org.webjars" % "bootstrap" % "3.2.0"
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
