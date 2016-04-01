@@ -1,6 +1,7 @@
 application.name=Product catalog
 ean = EAN
 name = Name
+products.list.navigation=Products
 description = Description
 products.details = Product: {0}
 products.form = Product details

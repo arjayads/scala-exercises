@@ -30,7 +30,7 @@ class Products @Inject() extends Controller {
 		Ok(views.html.products.list(products))
 	}
 
-  def show(ean: Long) = Action {
+  def show(ean: Long) = Action { implicit request =>
 
     Product.findByEan(ean).map { product =>
       Ok(views.html.products.details(product))
@@ -46,7 +46,7 @@ class Products @Inject() extends Controller {
     Ok(views.html.products.editProduct(form))
   }
 
-  def save = Action {
+  def save = Action { implicit request =>
     val newProductForm = productForm.bindFromRequest()
 
     newProductForm.fold (
@@ -57,7 +57,7 @@ class Products @Inject() extends Controller {
 
       success = { newProduct =>
         Product.add(newProduct)
-        Redirect(routes.Products.show(newProduct)).
+        Redirect(routes.Products.show(newProduct.ean)).
           flashing("success" -> Messages("products.new.success", newProduct.name))
       }
     )
