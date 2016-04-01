@@ -4,6 +4,7 @@ package controllers
 import javax.inject.{Inject, Singleton}
 
 import models.Product
+import play.api.Logger
 import play.api.data._
 import play.api.data.Forms._
 import play.api.i18n.Messages
@@ -17,7 +18,7 @@ class Products @Inject() extends Controller {
 
   private val productForm: Form[Product] = Form(
     mapping(
-      "ean" -> Forms.longNumber.verifying("validatidation.ean.duplicate", Product.findByEan(_).isEmpty),
+      "ean" -> Forms.longNumber.verifying("validation.ean.duplicate", Product.findByEan(_).isEmpty),
       "name" -> Forms.nonEmptyText,
       "description" -> Forms.nonEmptyText
     )(Product.apply)(Product.unapply)

@@ -9,7 +9,7 @@
         <div class="alert alert-error">
           <ul>
            @for(e <- productForm.errors) {
-              <li>@e.message</li>
+              <li>@Messages(e.message)</li>
            }
           </ul>
         </div>
