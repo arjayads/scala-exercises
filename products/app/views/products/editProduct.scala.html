@@ -5,12 +5,36 @@
     <h2>@Messages("products.form")</h2>
 
     @helper.form(action = routes.Products.save) {
+      @if(productForm.hasErrors) {
+        <div class="alert alert-error">
+          <ul>
+           @for(e <- productForm.errors) {
+              <li>@e.message</li>
+           }
+          </ul>
+        </div>
+      }
+
       <fieldset>
-        <legend>
-          @Messages("products.details", Messages("products.new"))
-          @helper.inputText(productForm("ean"))
-          @helper.inputText(productForm("name"))
-          @helper.textarea(productForm("description"))
+        <legend>@Messages("products.details", Messages("products.new"))
+          <dl class="" id="ean_field">
+            <dt><label for="ean">EAN</label></dt>
+            <dd>
+              <input type="text" id="ean" name="ean" value='@productForm("ean").value'>
+            </dd>
+          </dl>
+          <dl class="" id="name_field">
+            <dt><label for="name">Name</label></dt>
+            <dd>
+              <input type="text" id="name" name="name" value='@productForm("name").value'>
+            </dd>
+          </dl>
+          <dl class="" id="description_field">
+            <dt><label for="description">Description</label></dt>
+            <dd>
+              <textarea id="description" name="description">@productForm("description").value</textarea>
+            </dd>
+          </dl>
         </legend>
       </fieldset>
       <p><input type="submit" class="btn btn-primary" value='@Messages("products.new.submit")'></p>
