@@ -7,6 +7,7 @@ import models.Product
 import play.api.Logger
 import play.api.data._
 import play.api.data.Forms._
+import play.api.data.validation.{Constraints, Invalid, Valid, Constraint}
 import play.api.i18n.Messages
 import play.api.mvc.{Flash, Action, Controller}
 import play.api.i18n.Messages.Implicits._
@@ -15,11 +16,13 @@ import play.api.Play.current
 
 @Singleton
 class Products @Inject() extends Controller {
+  val testTextLen = (name: String) => name.length > 3 && name.length < 256
 
   private val productForm: Form[Product] = Form(
     mapping(
       "ean" -> Forms.longNumber.verifying("validation.ean.duplicate", Product.findByEan(_).isEmpty),
-      "name" -> Forms.nonEmptyText,
+      "name" -> text.verifying("validation.notEmpty", !_.isEmpty)
+                    .verifying("validation.product.name.len",  testTextLen),
       "description" -> Forms.nonEmptyText
     )(Product.apply)(Product.unapply)
   )

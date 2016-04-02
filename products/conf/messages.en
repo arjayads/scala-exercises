@@ -15,3 +15,5 @@ validation.ean.duplicate = A product with this EAN code already exists
 
 error.number = {0} must be a number.
 error.required = {0} is required.
+validation.notEmpty= {0} is required
+validation.product.name.len= Product name must be a minimum of 4 and maximum of 256 characters
