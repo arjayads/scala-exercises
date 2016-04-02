@@ -48,7 +48,7 @@ class Products @Inject() extends Controller {
   }
 
   def save = Action { implicit request =>
-    val newProductForm = productForm.bindFromRequest()
+    val newProductForm = productForm.bindFromRequest
 
     newProductForm.fold (
       hasErrors = { form =>
