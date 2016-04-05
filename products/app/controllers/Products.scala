@@ -66,4 +66,10 @@ class Products @Inject() extends Controller {
       }
     )
   }
+
+  def edit(ean: Long) = Action { implicit request =>
+    Product.findByEan(ean).map { product =>
+      Ok(views.html.products.editProduct(productForm.fill(product)))
+    }.getOrElse(Redirect(routes.Products.list))
+  }
 }

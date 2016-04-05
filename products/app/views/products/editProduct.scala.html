@@ -16,7 +16,7 @@
       }
 
       <fieldset>
-        <legend>@Messages("products.details", Messages("products.new"))
+        <legend>@Messages("products.details", if(productForm("name").value.isDefined) productForm("name").value.isDefined else Messages("products.new"))
           <dl class="" id="ean_field">
             <dt><label for="ean">EAN</label></dt>
             <dd>
